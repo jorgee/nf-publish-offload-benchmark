@@ -1,0 +1,27 @@
+params.outdir = 's3://jorgee-eu-west1-test1/publishDir/'
+
+process{
+        executor='awsbatch'
+        queue='TowerForge-3gsCWMjHnqAnb2hAv3DWkw-work'
+        container='cimg/aws:2024.03.1'
+        
+}
+
+process{
+	withName: publish_process {
+                cpus = 2
+
+        }
+}
+
+aws {
+    region = 'eu-west-1'
+}
+
+fusion.enabled = true
+wave.enabled = true
+publishOffload{
+	enable = true
+	BatchSize = 50
+	useFusion = true
+}

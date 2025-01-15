@@ -1,0 +1,13 @@
+params.outdir = 's3://jorgee-eu-west1-test1/publishDir/'
+params.num_files = 250
+params.file_mb = 1000
+process{
+        executor='awsbatch'
+        queue='TowerForge-3gsCWMjHnqAnb2hAv3DWkw-work'
+        container='cimg/aws:2024.03.1'
+}
+
+aws {
+    region = 'eu-west-1'
+}
+workflow.output.retryPolicy.maxAttempts = 15
